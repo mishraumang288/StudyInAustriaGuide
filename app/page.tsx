@@ -40,10 +40,10 @@ export default function HomePage() {
             A comprehensive guide for Indian students. Get step-by-step guidance on applications and visa in Austria.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700">
+            {/* <Button size="lg" className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700">
               Get Started
               <ExternalLink className="ml-2 h-5 w-5" />
-            </Button>
+            </Button> */}
             <Button
               size="lg"
               variant="outline"
