@@ -2,9 +2,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ExternalLink, GraduationCap, Home, FileText, MessageCircle, Instagram, Linkedin } from "lucide-react"
-
+import { Analytics } from '@vercel/analytics/next';
 export default function HomePage() {
   return (
+    
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
@@ -28,7 +29,7 @@ export default function HomePage() {
           </div>
         </div>
       </nav>
-
+<Analytics />
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
