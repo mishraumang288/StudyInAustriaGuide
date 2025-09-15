@@ -1,11 +1,20 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { ExternalLink, GraduationCap, Home, FileText, MessageCircle, Instagram, Linkedin } from "lucide-react"
-import { Analytics } from '@vercel/analytics/next';
+import {
+  ExternalLink,
+  GraduationCap,
+  Home,
+  FileText,
+  MessageCircle,
+  Instagram,
+  Linkedin,
+  Building2,
+  MapPin,
+} from "lucide-react"
+
 export default function HomePage() {
   return (
-    
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
@@ -22,6 +31,9 @@ export default function HomePage() {
               <a href="#resources" className="text-muted-foreground hover:text-foreground transition-colors">
                 Resources
               </a>
+              <a href="#accommodation" className="text-muted-foreground hover:text-foreground transition-colors">
+                Accommodation
+              </a>
               <a href="#community" className="text-muted-foreground hover:text-foreground transition-colors">
                 Community
               </a>
@@ -29,7 +41,7 @@ export default function HomePage() {
           </div>
         </div>
       </nav>
-<Analytics />
+
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
@@ -41,10 +53,10 @@ export default function HomePage() {
             A comprehensive guide for Indian students. Get step-by-step guidance on applications and visa in Austria.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {/* <Button size="lg" className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700">
+            <Button size="lg" className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700">
               Get Started
               <ExternalLink className="ml-2 h-5 w-5" />
-            </Button> */}
+            </Button>
             <Button
               size="lg"
               variant="outline"
@@ -353,6 +365,283 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Accommodation Section */}
+      <section id="accommodation" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Find Your Accommodation</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Comprehensive list of housing platforms and student dormitories across Austria to help you find the
+              perfect place to stay.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* General Housing Platforms */}
+            <Card className="h-fit">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <Building2 className="h-6 w-6 text-red-600" />
+                  <CardTitle className="text-xl">General Housing Platforms</CardTitle>
+                </div>
+                <CardDescription>
+                  Popular websites for finding apartments, rooms, and flat shares across Austria
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="grid gap-3">
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">WG-gesucht</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Flat shares (Germany-wide but widely used in Austria)
+                        </p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://www.wg-gesucht.de" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">HousingAnywhere</h4>
+                        <p className="text-sm text-muted-foreground">International student sublets</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://housinganywhere.com" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">Willhaben</h4>
+                        <p className="text-sm text-muted-foreground">Huge classifieds site (rooms, flats, houses)</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://www.willhaben.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">Immosuchmaschine</h4>
+                        <p className="text-sm text-muted-foreground">Apartment aggregator</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://www.immosuchmaschine.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">Wohnnet</h4>
+                        <p className="text-sm text-muted-foreground">Real estate listings</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://www.wohnnet.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">Der Standard Immobilien</h4>
+                        <p className="text-sm text-muted-foreground">Listings via newspaper</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://immobilien.derstandard.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">Jobwohnen</h4>
+                        <p className="text-sm text-muted-foreground">Student-friendly, often fewer agent fees</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://www.jobwohnen.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">Bazar.at</h4>
+                        <p className="text-sm text-muted-foreground">Classifieds, especially rooms & flat shares</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://www.bazar.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="p-3 border border-border rounded-lg bg-blue-50 dark:bg-blue-950/20">
+                      <div className="flex items-center gap-2 mb-2">
+                        <MessageCircle className="h-4 w-4 text-blue-600" />
+                        <h4 className="font-medium text-foreground">Facebook Groups</h4>
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        Search for "WG-Zimmer Wien/Graz/Salzburg" or similar groups for your city
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Student Dorm Providers */}
+            <Card className="h-fit">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <MapPin className="h-6 w-6 text-red-600" />
+                  <CardTitle className="text-xl">Student Dorm Providers</CardTitle>
+                </div>
+                <CardDescription>Official student housing providers with dormitories across Austria</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="grid gap-3">
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">OeAD Student Housing</h4>
+                        <p className="text-sm text-muted-foreground">Official Austrian exchange/student housing</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://oeadstudenthousing.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">Home4students</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Dorms in Vienna, Graz, Klagenfurt, Salzburg, Innsbruck
+                        </p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://home4students.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">Akademikerhilfe</h4>
+                        <p className="text-sm text-muted-foreground">38+ residences across Austria</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://akademikerhilfe.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">ÖJAB</h4>
+                        <p className="text-sm text-muted-foreground">
+                          23 dorms in Vienna, Graz, Salzburg, Eisenstadt, Krems
+                        </p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://oejab.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">STUWO</h4>
+                        <p className="text-sm text-muted-foreground">Modern dorms, all-inclusive, multiple states</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://stuwo.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">Viennabase</h4>
+                        <p className="text-sm text-muted-foreground">Mainly Vienna, modern residences</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://viennabase.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">WIST Haus</h4>
+                        <p className="text-sm text-muted-foreground">Mainly in Styria (Steiermark)</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://wist.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">Kolpinghaus</h4>
+                        <p className="text-sm text-muted-foreground">Dorms in Vienna, Salzburg, Linz, etc.</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://kolping.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
+                        <h4 className="font-medium text-foreground">ISH Innsbruck</h4>
+                        <p className="text-sm text-muted-foreground">Internationales Studentenhaus - Tyrol-specific</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://ish.or.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
+                    <h4 className="font-medium text-green-800 dark:text-green-200 mb-2">💡 Pro Tip</h4>
+                    <p className="text-sm text-green-700 dark:text-green-300">
+                      Apply to student dorms early as they fill up quickly. Many have application deadlines months
+                      before the semester starts.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-card border-t border-border py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
@@ -362,6 +651,12 @@ export default function HomePage() {
               <div className="space-y-2">
                 <a href="#process" className="block text-muted-foreground hover:text-foreground transition-colors">
                   Visa Process
+                </a>
+                <a
+                  href="#accommodation"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Accommodation
                 </a>
                 <a href="#community" className="block text-muted-foreground hover:text-foreground transition-colors">
                   WhatsApp Community
