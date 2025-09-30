@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  basePath: '/StudyInAustriaGuide',
+  // basePath: '/StudyInAustriaGuide',
   eslint: {
     ignoreDuringBuilds: true,
   },
