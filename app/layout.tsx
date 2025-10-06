@@ -19,6 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6144787726207338"
+          crossorigin="anonymous"></script>
         <style>{`
 html {
   font-family: ${GeistSans.style.fontFamily};
