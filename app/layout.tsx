@@ -11,7 +11,7 @@ import "./globals.css";
 //   generator: "v0.app",
 // };
 export const metadata: Metadata = {
-  title: "Study in Austria 🇦🇹 | Complete Guide for International Students",
+  title: "Study in Austria | Complete Guide for International Students",
   description:
     "Your ultimate guide to studying in Austria: applications, visas, universities, scholarships, and student life . Everything you need to start your journey.",
   generator: "Next.js & v0.app",
