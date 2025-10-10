@@ -25,6 +25,9 @@ export default function HomePage() {
               <span className="font-bold text-xl text-foreground">Study Austria</span>
             </div>
             <div className="hidden md:flex items-center gap-6">
+              <a href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
+                About
+              </a>
               <a href="#process" className="text-muted-foreground hover:text-foreground transition-colors">
                 Process
               </a>
@@ -53,17 +56,22 @@ export default function HomePage() {
             A comprehensive guide for Indian students. Get step-by-step guidance on applications and visa in Austria.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700">
-              Get Started
-              <ExternalLink className="ml-2 h-5 w-5" />
+            <Button asChild size="lg" className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700">
+              <a href="#process">
+                Get Started
+                <ExternalLink className="ml-2 h-5 w-5" />
+              </a>
             </Button>
             <Button
+              asChild
               size="lg"
               variant="outline"
               className="text-lg px-8 py-6 border-red-600 text-red-600 hover:bg-red-50 bg-transparent"
             >
-              <MessageCircle className="mr-2 h-5 w-5" />
-              Join WhatsApp Community
+              <a href="https://chat.whatsapp.com/EVGlfyIsJ3BL3N9L8G6FFI" target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Join WhatsApp Community
+              </a>
             </Button>
           </div>
         </div>
@@ -645,7 +653,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="bg-card border-t border-border py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
               <div className="space-y-2">
@@ -672,6 +680,33 @@ export default function HomePage() {
               </div>
             </div>
 
+            {/* About Section */}
+            <div>
+              <h4 className="font-semibold text-foreground mb-4">About</h4>
+              <div className="space-y-2">
+                <a href="/about" className="block text-muted-foreground hover:text-foreground transition-colors">
+                  About Us
+                </a>
+                <a href="/contact" className="block text-muted-foreground hover:text-foreground transition-colors">
+                  Contact
+                </a>
+              </div>
+            </div>
+
+            {/* Legal Section */}
+            <div>
+              <h4 className="font-semibold text-foreground mb-4">Legal</h4>
+              <div className="space-y-2">
+                <a href="/privacy" className="block text-muted-foreground hover:text-foreground transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="/terms" className="block text-muted-foreground hover:text-foreground transition-colors">
+                  Terms of Service
+                </a>
+              </div>
+            </div>
+
+            {/* Connect Section */}
             <div>
               <h4 className="font-semibold text-foreground mb-4">Connect</h4>
               <div className="space-y-3">
