@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   generator: "Next.js & v0.app",
   keywords: [
     "study in Austria",
+    "study in Austria",
     "Austrian universities",
     "international students",
     "Austrian visa",
@@ -35,6 +36,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  icons: {
+    icon: "/titleIcon.png",
+    apple: "/apple-touch-icon.svg",
+  },
 };
 
 
@@ -48,6 +53,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+  <link rel="icon" href="/titleIcon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
 
         {/* Google Analytics */}
         <script
