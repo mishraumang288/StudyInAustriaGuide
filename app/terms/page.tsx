@@ -12,15 +12,10 @@ export default function TermsPage() {
               <span className="font-bold text-xl text-foreground">Study Austria</span>
             </a>
             <div className="hidden md:flex items-center gap-6">
-              <a href="/" className="text-muted-foreground hover:text-foreground transition-colors">
-                Home
-              </a>
-              <a href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                About
-              </a>
-              <a href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
-                Contact
-              </a>
+              <a href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</a>
+              <a href="/visa" className="text-muted-foreground hover:text-foreground transition-colors">Study Visa</a>
+              <a href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</a>
+              <a href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
             </div>
           </div>
         </div>

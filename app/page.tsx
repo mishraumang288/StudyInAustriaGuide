@@ -1,9 +1,12 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import SiteNav from "@/components/site-nav"
+import Image from "next/image"
 import {
   ExternalLink,
-  GraduationCap,
   Home,
   FileText,
   MessageCircle,
@@ -13,50 +16,41 @@ import {
   MapPin,
 } from "lucide-react"
 
+
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2">
-              <GraduationCap className="h-8 w-8 text-red-600" />
-              <span className="font-bold text-xl text-foreground">Study Austria</span>
-            </div>
-            <div className="hidden md:flex items-center gap-6">
-              <a href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                About
-              </a>
-              <a href="#process" className="text-muted-foreground hover:text-foreground transition-colors">
-                Process
-              </a>
-              <a href="#resources" className="text-muted-foreground hover:text-foreground transition-colors">
-                Resources
-              </a>
-              <a href="#accommodation" className="text-muted-foreground hover:text-foreground transition-colors">
-                Accommodation
-              </a>
-              <a href="#community" className="text-muted-foreground hover:text-foreground transition-colors">
-                Community
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <SiteNav currentPage="home" />
 
-      {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
+      {/* Hero Section with Static Background */}
+      <section className="relative min-h-[450px] sm:h-[550px] -mt-16 pt-16 flex items-center justify-center overflow-hidden">
+        {/* Static TU Graz Background */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          <Image
+            src="/universities/tu_graz.jpg"
+            alt="TU Graz"
+            fill
+            style={{ objectFit: "cover" }}
+            priority
+            quality={100}
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black/60 z-10" />
+        {/* Hero Content */}
+        <div className="relative z-20 w-full max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-8">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 sm:mb-6" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
             Your Complete Guide to
-            <span className="text-red-600 block">Studying in Austria</span>
+            <span className="text-red-500 block">Studying in Austria</span>
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-white mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.8)' }}>
             A comprehensive guide for Indian students. Get step-by-step guidance on applications and visa in Austria.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="text-lg px-8 py-6 bg-red-600 hover:bg-red-700">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <Button asChild size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 bg-red-600 hover:bg-red-700 shadow-lg">
               <a href="#process">
                 Get Started
                 <ExternalLink className="ml-2 h-5 w-5" />
@@ -66,11 +60,11 @@ export default function HomePage() {
               asChild
               size="lg"
               variant="outline"
-              className="text-lg px-8 py-6 border-red-600 text-red-600 hover:bg-red-50 bg-transparent"
+              className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 border-2 border-white text-white hover:bg-white hover:text-red-600 bg-white/10 backdrop-blur-sm shadow-lg"
             >
               <a href="https://chat.whatsapp.com/EVGlfyIsJ3BL3N9L8G6FFI" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Join WhatsApp Community
+                <MessageCircle className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
+                <span className="whitespace-nowrap">Join WhatsApp Community</span>
               </a>
             </Button>
           </div>
@@ -80,8 +74,8 @@ export default function HomePage() {
       {/* WhatsApp Community Section */}
       <section id="community" className="py-16 px-4 sm:px-6 lg:px-8 bg-red-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-6">Join Our Indian Students WhatsApp Community</h2>
-          <p className="text-lg text-muted-foreground mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4 sm:mb-6">Join Our Indian Students WhatsApp Community</h2>
+          <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8">
             {"Connect with fellow Indian students and get real-time support throughout your Austria journey. "}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -170,585 +164,149 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Process Summaries */}
-      <section id="process" className="py-16 px-4 sm:px-6 lg:px-8">
+      {/* Study Visa CTA */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-foreground mb-4">Study Visa Process</h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            Access the full, step-by-step Austrian student residence permit (RP) and Visa-D guide including document
+            preparation, embassy appointment, VFS submission and post-arrival tasks.
+          </p>
+          <Button asChild size="lg" className="bg-red-600 hover:bg-red-700">
+            <a href="/visa">Open Full Visa Guide</a>
+          </Button>
+        </div>
+      </section>
+
+      {/* Living in Austria CTA */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-foreground mb-4">Living in Austria</h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            Discover everything about living in Austria as an international student including cost of living, university system, accommodation options, and practical tips.
+          </p>
+          <Button asChild size="lg" className="bg-red-600 hover:bg-red-700">
+            <a href="/living">Explore Living Guide</a>
+          </Button>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-foreground mb-12">Study Visa Process Summary</h2>
-          <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="apostille" className="border border-border rounded-lg px-6">
-              <AccordionTrigger className="text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    1
-                  </div>
-                  <span className="text-lg font-semibold">Apostille & University Application</span>
-                </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-4">Frequently Asked Questions</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">
+            Quick answers to common questions about studying in Austria
+          </p>
+          
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            <AccordionItem value="item-1" className="bg-card border border-border rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                How long does the visa process take?
               </AccordionTrigger>
-              <AccordionContent className="pt-4 pb-2">
-                <div className="space-y-4 text-muted-foreground">
-                  <p>First step: Get your documents apostilled and apply to universities.</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Apostille your degree and transcripts from Ministry of External Affairs (MEA)</li>
-                    <li>Apply to your desired courses</li>
-                    <li>Get an admission letter from a university</li>
-                  </ul>
-                </div>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                The entire visa process typically takes 3-6 months from submission to receiving your Visa-D. Embassy appointments 
+                can take 2-4 weeks to schedule, and the residence permit processing time is usually 8-12 weeks. We recommend 
+                starting your application at least 6 months before your intended travel date.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="embassy-email" className="border border-border rounded-lg px-6">
-              <AccordionTrigger className="text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    2
-                  </div>
-                  <span className="text-lg font-semibold">Embassy Email & Appointment</span>
-                </div>
+            <AccordionItem value="item-2" className="bg-card border border-border rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                What is the minimum bank balance required?
               </AccordionTrigger>
-              <AccordionContent className="pt-4 pb-2">
-                <div className="space-y-4 text-muted-foreground">
-                  <p>Contact the Austrian Embassy for residence permit appointment.</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Send email to NEW-DELHI-KA@bmeia.gv.at</li>
-                    <li>Include: name, DOB, passport number</li>
-                    <li>Attach admission letter and passport pages (first & last)</li>
-                    <li>Request residence permit appointment</li>
-                    <li>Reply with preferred date when they respond</li>
-                  </ul>
-                </div>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                For the residence permit application, you need to show proof of funds covering at least €12,000 per year 
+                (approximately €1,000 per month) through a blocked bank account in Austria. This can be opened with banks like 
+                Erste Bank, Bank Austria, or specialized services like Expatrio. Some students also use scholarship letters 
+                or parental income proof as alternatives.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="documents" className="border border-border rounded-lg px-6">
-              <AccordionTrigger className="text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    3
-                  </div>
-                  <span className="text-lg font-semibold">Document Preparation</span>
-                </div>
+            <AccordionItem value="item-3" className="bg-card border border-border rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                Do I need to know German to study in Austria?
               </AccordionTrigger>
-              <AccordionContent className="pt-4 pb-2">
-                <div className="space-y-4 text-muted-foreground">
-                  <p>Prepare all required documents as per OEAD checklist.</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Follow the complete document list from OEAD</li>
-                    <li>Ensure all documents are properly apostilled</li>
-                    <li>Get financial proof documents ready</li>
-                  </ul>
-                  <div className="flex gap-2 pt-2">
-                    <Button asChild variant="outline" size="sm">
-                      <a
-                        href="https://oead.at/en/to-austria/entry-and-residence/residence-permit-student-no-mobility-programme/#checklists"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        OEAD Checklist
-                        <ExternalLink className="ml-2 h-3 w-3" />
-                      </a>
-                    </Button>
-                  </div>
-                </div>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                It depends on your program. Many Master's programs, especially in technical fields, are offered entirely in 
+                English and don't require German proficiency for admission. However, learning German is highly recommended for 
+                daily life, part-time jobs, and integration. Most universities offer free or low-cost German courses for 
+                international students. For Bachelor's programs, German proficiency (usually B2 or C1 level) is typically required.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="embassy-visit" className="border border-border rounded-lg px-6">
-              <AccordionTrigger className="text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    4
-                  </div>
-                  <span className="text-lg font-semibold">Embassy Visit</span>
-                </div>
+            <AccordionItem value="item-4" className="bg-card border border-border rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                How much does it cost to live in Austria as a student?
               </AccordionTrigger>
-              <AccordionContent className="pt-4 pb-2">
-                <div className="space-y-4 text-muted-foreground">
-                  <p>Visit Austrian Embassy in Delhi for document submission.</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Go to Austrian Embassy in Delhi on appointment date</li>
-                    <li>Submit all documents including application form (received via email)</li>
-                    <li>Pay equivalent of 180 euros in Indian rupees</li>
-                  </ul>
-                </div>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                Monthly living costs typically range from €800-€1,200 depending on your city and lifestyle. Vienna is more 
+                expensive (€900-€1,200), while cities like Graz or Innsbruck are slightly cheaper (€800-€1,000). This includes 
+                rent (€350-€600), food (€200-€300), transport (€20 with student discount), health insurance (€65), and personal 
+                expenses. Students can work part-time (20 hours/week during semester, full-time during breaks) to offset costs.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="rp-approval" className="border border-border rounded-lg px-6">
-              <AccordionTrigger className="text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    5
-                  </div>
-                  <span className="text-lg font-semibold">RP Approval & Visa-D</span>
-                </div>
+            <AccordionItem value="item-5" className="bg-card border border-border rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                Can I work while studying in Austria?
               </AccordionTrigger>
-              <AccordionContent className="pt-4 pb-2">
-                <div className="space-y-4 text-muted-foreground">
-                  <p>Wait for residence permit approval and visa application permission.</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Wait for email mentioning "RP approved"</li>
-                    <li>Wait for follow-up email: "you can apply for a visa-D"</li>
-                  </ul>
-                </div>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                Yes! International students from non-EU countries can work up to 20 hours per week during the semester and 
+                full-time during semester breaks (summer and winter holidays). The average student job pays €12-€15 per hour. 
+                Common student jobs include working in cafes, supermarkets, libraries, or as research assistants at universities. 
+                You don't need a separate work permit—your residence permit for studies allows this.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="vfs" className="border border-border rounded-lg px-6">
-              <AccordionTrigger className="text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    6
-                  </div>
-                  <span className="text-lg font-semibold">VFS Application</span>
-                </div>
+            <AccordionItem value="item-6" className="bg-card border border-border rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                When should I start looking for accommodation?
               </AccordionTrigger>
-              <AccordionContent className="pt-4 pb-2">
-                <div className="space-y-4 text-muted-foreground">
-                  <p>Apply for visa at VFS center.</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Walk-in or take appointment at nearest VFS</li>
-                    <li>Submit documents (list mentioned in embassy email)</li>
-                    <li>Fill application form</li>
-                    <li>Pay 140€ or ~₹16,700</li>
-                  </ul>
-                </div>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                Start looking 2-3 months before your arrival. The Austrian housing market, especially in Vienna, is competitive. 
+                Apply to student dorms (OEAD Student Housing, Home4Students, STUWO) as soon as you receive your admission letter. 
+                For private accommodation, check platforms like WG-gesucht, HousingAnywhere, and Willhaben 1-2 months before 
+                arrival. Many students initially book temporary accommodation (Airbnb, hostels) for the first 2-4 weeks while 
+                they search for permanent housing on the ground.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="travel" className="border border-border rounded-lg px-6">
-              <AccordionTrigger className="text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    7
-                  </div>
-                  <span className="text-lg font-semibold">Travel to Austria</span>
-                </div>
+            <AccordionItem value="item-7" className="bg-card border border-border rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                Are there tuition fees for public universities?
               </AccordionTrigger>
-              <AccordionContent className="pt-4 pb-2">
-                <div className="space-y-4 text-muted-foreground">
-                  <p>Once visa is stamped, you can travel to Austria.</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Wait for passport with visa stamp</li>
-                    <li>Book flight to Austria</li>
-                    <li>Enroll at the university upon arrival</li>
-                  </ul>
-                </div>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                Austrian and EU/EEA students pay no tuition fees at public universities (just €21.20 per semester for student 
+                union fees). Non-EU international students pay approximately €1,500 per year (€726.72 per semester) plus the 
+                student union fee. This is significantly lower than most other European countries. Some Fachhochschulen (Universities 
+                of Applied Sciences) charge higher fees (€363-€400 per semester for all students).
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="arrival-tasks" className="border border-border rounded-lg px-6">
-              <AccordionTrigger className="text-left">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                    8
-                  </div>
-                  <span className="text-lg font-semibold">After Arrival in Austria</span>
-                </div>
+            <AccordionItem value="item-8" className="bg-card border border-border rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                What documents do I need for the visa application?
               </AccordionTrigger>
-              <AccordionContent className="pt-4 pb-2">
-                <div className="space-y-4 text-muted-foreground">
-                  <p>Essential tasks to complete after reaching Austria.</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Email prospective Magistrate for RP card collection in advance</li>
-                    <li>
-                      <strong>Meldezettel</strong> (City registration) - within 3 days
-                    </li>
-                    <li>
-                      <strong>University Enrollment</strong>
-                    </li>
-                    <li>
-                      <strong>Open Austrian Bank account</strong> in Erste or Bank Austria
-                    </li>
-                    <li>
-                      <strong>ÖGK Insurance</strong>
-                    </li>
-                  </ul>
-                  <p className="text-sm italic">
-                    Note: Take all above documents during RP card collection (except bank account docs)
-                  </p>
-                </div>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                Key documents include: (1) Valid passport (minimum 6 months validity), (2) University admission letter, 
+                (3) Completed residence permit application form, (4) Proof of financial means (blocked account with €12,000 or 
+                equivalent), (5) Health insurance coverage (minimum €30,000), (6) Proof of accommodation in Austria, 
+                (7) Birth certificate, (8) Academic transcripts and certificates, (9) Passport photos, (10) Police clearance 
+                certificate. All documents must be original or certified copies, and translated to German if not in English or German. 
+                Check our detailed visa guide for the complete checklist and step-by-step instructions.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-        </div>
-      </section>
 
-      {/* Accommodation Section */}
-      <section id="accommodation" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Find Your Accommodation</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive list of housing platforms and student dormitories across Austria to help you find the
-              perfect place to stay.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* General Housing Platforms */}
-            <Card className="h-fit">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <Building2 className="h-6 w-6 text-red-600" />
-                  <CardTitle className="text-xl">General Housing Platforms</CardTitle>
-                </div>
-                <CardDescription>
-                  Popular websites for finding apartments, rooms, and flat shares across Austria
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="grid gap-3">
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">WG-gesucht</h4>
-                        <p className="text-sm text-muted-foreground">
-                          Flat shares (Germany-wide but widely used in Austria)
-                        </p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://www.wg-gesucht.de" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">HousingAnywhere</h4>
-                        <p className="text-sm text-muted-foreground">International student sublets</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://housinganywhere.com" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">Willhaben</h4>
-                        <p className="text-sm text-muted-foreground">Huge classifieds site (rooms, flats, houses)</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://www.willhaben.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">Immosuchmaschine</h4>
-                        <p className="text-sm text-muted-foreground">Apartment aggregator</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://www.immosuchmaschine.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">Wohnnet</h4>
-                        <p className="text-sm text-muted-foreground">Real estate listings</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://www.wohnnet.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">Der Standard Immobilien</h4>
-                        <p className="text-sm text-muted-foreground">Listings via newspaper</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://immobilien.derstandard.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">Jobwohnen</h4>
-                        <p className="text-sm text-muted-foreground">Student-friendly, often fewer agent fees</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://www.jobwohnen.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">Bazar.at</h4>
-                        <p className="text-sm text-muted-foreground">Classifieds, especially rooms & flat shares</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://www.bazar.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="p-3 border border-border rounded-lg bg-blue-50 dark:bg-blue-950/20">
-                      <div className="flex items-center gap-2 mb-2">
-                        <MessageCircle className="h-4 w-4 text-blue-600" />
-                        <h4 className="font-medium text-foreground">Facebook Groups</h4>
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        Search for "WG-Zimmer Wien/Graz/Salzburg" or similar groups for your city
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Student Dorm Providers */}
-            <Card className="h-fit">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <MapPin className="h-6 w-6 text-red-600" />
-                  <CardTitle className="text-xl">Student Dorm Providers</CardTitle>
-                </div>
-                <CardDescription>Official student housing providers with dormitories across Austria</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="grid gap-3">
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">OeAD Student Housing</h4>
-                        <p className="text-sm text-muted-foreground">Official Austrian exchange/student housing</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://oeadstudenthousing.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">Home4students</h4>
-                        <p className="text-sm text-muted-foreground">
-                          Dorms in Vienna, Graz, Klagenfurt, Salzburg, Innsbruck
-                        </p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://home4students.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">Akademikerhilfe</h4>
-                        <p className="text-sm text-muted-foreground">38+ residences across Austria</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://akademikerhilfe.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">ÖJAB</h4>
-                        <p className="text-sm text-muted-foreground">
-                          23 dorms in Vienna, Graz, Salzburg, Eisenstadt, Krems
-                        </p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://oejab.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">STUWO</h4>
-                        <p className="text-sm text-muted-foreground">Modern dorms, all-inclusive, multiple states</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://stuwo.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">Viennabase</h4>
-                        <p className="text-sm text-muted-foreground">Mainly Vienna, modern residences</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://viennabase.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">WIST Haus</h4>
-                        <p className="text-sm text-muted-foreground">Mainly in Styria (Steiermark)</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://wist.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">Kolpinghaus</h4>
-                        <p className="text-sm text-muted-foreground">Dorms in Vienna, Salzburg, Linz, etc.</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://kolping.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <h4 className="font-medium text-foreground">ISH Innsbruck</h4>
-                        <p className="text-sm text-muted-foreground">Internationales Studentenhaus - Tyrol-specific</p>
-                      </div>
-                      <Button asChild size="sm" variant="outline">
-                        <a href="https://ish.or.at" target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
-                    <h4 className="font-medium text-green-800 dark:text-green-200 mb-2">💡 Pro Tip</h4>
-                    <p className="text-sm text-green-700 dark:text-green-300">
-                      Apply to student dorms early as they fill up quickly. Many have application deadlines months
-                      before the semester starts.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="mt-12 text-center">
+            <p className="text-muted-foreground mb-4">Still have questions?</p>
+            <Button asChild variant="outline" size="lg" className="bg-transparent">
+              <a href="/contact">Contact Us</a>
+            </Button>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-card border-t border-border py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
-              <div className="space-y-2">
-                <a href="#process" className="block text-muted-foreground hover:text-foreground transition-colors">
-                  Visa Process
-                </a>
-                <a
-                  href="#accommodation"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Accommodation
-                </a>
-                <a href="#community" className="block text-muted-foreground hover:text-foreground transition-colors">
-                  WhatsApp Community
-                </a>
-                <a
-                  href="https://studienwahl.at/en"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Find Programs
-                </a>
-              </div>
-            </div>
-
-            {/* About Section */}
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">About</h4>
-              <div className="space-y-2">
-                <a href="/about" className="block text-muted-foreground hover:text-foreground transition-colors">
-                  About Us
-                </a>
-                <a href="/contact" className="block text-muted-foreground hover:text-foreground transition-colors">
-                  Contact
-                </a>
-              </div>
-            </div>
-
-            {/* Legal Section */}
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">Legal</h4>
-              <div className="space-y-2">
-                <a href="/privacy" className="block text-muted-foreground hover:text-foreground transition-colors">
-                  Privacy Policy
-                </a>
-                <a href="/terms" className="block text-muted-foreground hover:text-foreground transition-colors">
-                  Terms of Service
-                </a>
-              </div>
-            </div>
-
-            {/* Connect Section */}
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">Connect</h4>
-              <div className="space-y-3">
-                <a
-                  href="https://chat.whatsapp.com/EVGlfyIsJ3BL3N9L8G6FFI"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  WhatsApp Community
-                </a>
-                <a
-                  href="https://www.instagram.com/umang_miishra/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Instagram className="h-4 w-4" />
-                  Instagram
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/umang-mishra2002/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Linkedin className="h-4 w-4" />
-                  LinkedIn
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>
-              Developed by <strong>Umang Mishra</strong>, MSc CS student at Uni Wien
-            </p>
-            <p className="mt-2">© 2025 Study Austria Guide. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

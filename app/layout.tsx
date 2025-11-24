@@ -38,6 +38,8 @@ export const metadata: Metadata = {
 };
 
 
+import SiteFooter from "@/components/site-footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -78,7 +80,10 @@ html {
 }
         `}</style>
       </head>
-      <body>{children}</body>
+      <body className="flex flex-col min-h-screen">
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }

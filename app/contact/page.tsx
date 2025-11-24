@@ -1,172 +1,230 @@
-import { GraduationCap, Mail, MessageCircle, Instagram, Linkedin } from "lucide-react"
+"use client"
+
+import { Mail, MessageCircle, Instagram, Linkedin, Send } from "lucide-react"
+import { contactMetadata } from "@/lib/metadata"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import SiteNav from "@/components/site-nav"
+import { useState } from "react"
 
 export default function ContactPage() {
-  return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <a href="/" className="flex items-center gap-2">
-              <GraduationCap className="h-8 w-8 text-red-600" />
-              <span className="font-bold text-xl text-foreground">Study Austria</span>
-            </a>
-            <div className="hidden md:flex items-center gap-6">
-              <a href="/" className="text-muted-foreground hover:text-foreground transition-colors">
-                Home
-              </a>
-              <a href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                About
-              </a>
-              <a href="/contact" className="text-foreground font-medium">
-                Contact
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch("https://formspree.io/f/manzjyga", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus("success")
+        setFormData({ name: "", email: "", message: "" })
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setSubmitStatus("idle"), 5000)
+      } else {
+        setSubmitStatus("error")
+        setTimeout(() => setSubmitStatus("idle"), 5000)
+      }
+    } catch (error) {
+      console.error("Form submission error:", error)
+      setSubmitStatus("error")
+      setTimeout(() => setSubmitStatus("idle"), 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col">
+      <SiteNav currentPage="contact" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1">
         <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Get in Touch</h1>
         <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
           Have questions about studying in Austria? We're here to help! Connect with us through any of these channels.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <MessageCircle className="h-8 w-8 text-green-600 mb-2" />
-              <CardTitle>WhatsApp Community</CardTitle>
-              <CardDescription>Join our active community of Indian students</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-muted-foreground text-sm">
-                Get instant answers from fellow students and stay updated with the latest information.
-              </p>
-              <div className="space-y-2">
-                <Button asChild className="w-full bg-green-600 hover:bg-green-700">
+        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+          {/* Contact Form */}
+          <div className="lg:col-span-2">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Send className="h-5 w-5 text-red-600" />
+                  Send Us a Message
+                </CardTitle>
+                <CardDescription>
+                  Fill out the form below and we'll get back to you within 24-48 hours.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Name *</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      placeholder="Your full name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email *</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Message *</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Tell us about your question or inquiry..."
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      className="w-full min-h-[150px]"
+                    />
+                  </div>
+
+                  {submitStatus === "success" && (
+                    <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900 rounded-md p-4 text-green-800 dark:text-green-200">
+                      ✓ Thank you for your message! We'll get back to you within 24-48 hours.
+                    </div>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900 rounded-md p-4 text-red-800 dark:text-red-200">
+                      ✗ Something went wrong. Please try again or contact us via email directly.
+                    </div>
+                  )}
+
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-red-600 hover:bg-red-700"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </Button>
+
+                  <p className="text-xs text-muted-foreground">
+                    * Required fields. We respect your privacy and will never share your information.
+                  </p>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Quick Contact Options */}
+          <div className="space-y-6">
+            <Card className="h-fit">
+              <CardHeader>
+                <MessageCircle className="h-6 w-6 text-green-600 mb-2" />
+                <CardTitle className="text-lg">WhatsApp</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground text-sm">
+                  Get instant answers from 1000+ students.
+                </p>
+                <Button asChild size="sm" className="w-full bg-green-600 hover:bg-green-700">
                   <a href="https://chat.whatsapp.com/EVGlfyIsJ3BL3N9L8G6FFI" target="_blank" rel="noopener noreferrer">
-                    Join Main Group
+                    Join Community
                   </a>
                 </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="w-full border-green-600 text-green-600 hover:bg-green-50 bg-transparent"
-                >
-                  <a href="https://chat.whatsapp.com/EQemXIsKUtQBw9xBK7ut5p" target="_blank" rel="noopener noreferrer">
-                    Join Secondary Group
+              </CardContent>
+            </Card>
+
+            <Card className="h-fit">
+              <CardHeader>
+                <Instagram className="h-6 w-6 text-pink-600 mb-2" />
+                <CardTitle className="text-lg">Instagram</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground text-sm">
+                  Daily tips and updates.
+                </p>
+                <Button asChild size="sm" variant="outline" className="w-full">
+                  <a href="https://www.instagram.com/umang_miishra/" target="_blank" rel="noopener noreferrer">
+                    Follow Us
                   </a>
                 </Button>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
 
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <Instagram className="h-8 w-8 text-pink-600 mb-2" />
-              <CardTitle>Instagram</CardTitle>
-              <CardDescription>Follow for updates and tips</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-muted-foreground text-sm">
-                Get daily tips, updates, and connect with Umang directly on Instagram.
-              </p>
-              <Button asChild variant="outline" className="w-full bg-transparent">
-                <a
-                  href="https://www.instagram.com/umang_miishra/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
-                >
-                  <Instagram className="h-4 w-4" />
-                  @umang_miishra
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
+            <Card className="h-fit">
+              <CardHeader>
+                <Linkedin className="h-6 w-6 text-blue-600 mb-2" />
+                <CardTitle className="text-lg">LinkedIn</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground text-sm">
+                  Professional networking.
+                </p>
+                <Button asChild size="sm" variant="outline" className="w-full">
+                  <a href="https://www.linkedin.com/in/umang-mishra2002/" target="_blank" rel="noopener noreferrer">
+                    Connect
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
 
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <Linkedin className="h-8 w-8 text-blue-600 mb-2" />
-              <CardTitle>LinkedIn</CardTitle>
-              <CardDescription>Professional networking</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-muted-foreground text-sm">
-                Connect professionally and stay updated with career opportunities in Austria.
-              </p>
-              <Button asChild variant="outline" className="w-full bg-transparent">
-                <a
-                  href="https://www.linkedin.com/in/umang-mishra2002/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
-                >
-                  <Linkedin className="h-4 w-4" />
-                  Umang Mishra
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <Mail className="h-8 w-8 text-red-600 mb-2" />
-              <CardTitle>Email</CardTitle>
-              <CardDescription>For detailed inquiries</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-muted-foreground text-sm">
-                For detailed questions or collaboration opportunities, reach out via email.
-              </p>
-              <Button asChild variant="outline" className="w-full bg-transparent">
-                <a href="mailto:mishraumang288@gmail.com" className="flex items-center justify-center gap-2">
-                  <Mail className="h-4 w-4" />
-                  mishraumang288@gmail.com
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="bg-muted/50 rounded-lg p-8 mb-12">
-          <h2 className="text-2xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-foreground mb-2">How quickly can I expect a response?</h3>
-              <p className="text-muted-foreground">
-                WhatsApp community responses are usually instant. For email inquiries, we typically respond within 24-48
-                hours.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-foreground mb-2">Is this service free?</h3>
-              <p className="text-muted-foreground">
-                Yes! All our resources, guides, and community support are completely free. We're students helping
-                students.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-foreground mb-2">Can you help with visa applications?</h3>
-              <p className="text-muted-foreground">
-                We provide comprehensive guides and community support, but we don't offer paid consultation services.
-                Our community members share their experiences and help each other.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-foreground mb-2">Do you offer accommodation booking services?</h3>
-              <p className="text-muted-foreground">
-                We provide a comprehensive list of housing platforms and student dorms, but we don't book accommodation
-                directly. All bookings are done through the official platforms we recommend.
-              </p>
-            </div>
+            <Card className="h-fit">
+              <CardHeader>
+                <Mail className="h-6 w-6 text-red-600 mb-2" />
+                <CardTitle className="text-lg">Email</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground text-sm">
+                  For detailed inquiries.
+                </p>
+                <Button asChild size="sm" variant="outline" className="w-full">
+                  <a href="mailto:mishraumang288@gmail.com">
+                    Send Email
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
 
-        <div className="bg-red-50 dark:bg-red-950/20 rounded-lg p-8 text-center">
+        <div className="bg-red-50 dark:bg-red-950/20 rounded-lg p-8 text-center mt-12">
           <h2 className="text-2xl font-bold text-foreground mb-4">Ready to Start Your Journey?</h2>
           <p className="text-muted-foreground mb-6">
             Join hundreds of Indian students who have successfully made Austria their study destination.
