@@ -37,6 +37,24 @@ const blogPosts: BlogPost[] = [
     category: "Student Life",
   },
   {
+    slug: "salzburg-to-vienna-journey",
+    title: "From Salzburg to Vienna: Switching Universities, Surviving on a Budget, and Finding My First Job",
+    excerpt:
+      "I started MSc Data Science in Salzburg, shifted to Vienna for Computer Science, learned German while job hunting, and stretched every euro—here is the honest journey and practical tips.",
+    date: "November 26, 2025",
+    readTime: "8 min read",
+    category: "Student Life",
+  },
+  {
+    slug: "missed-intake-visa-miscommunication",
+    title: "Missing an Intake After Visa Miscommunication: How Persistence Led to Approval",
+    excerpt:
+      "A student lost an intake due to embassy–magistrate miscommunication about extra financial proof, faced rejection, pushed for clarification, and finally secured approval in early November to start MSc Computer Science at Uni Wien.",
+    date: "November 26, 2025",
+    readTime: "7 min read",
+    category: "Visa Guide",
+  },
+  {
     slug: "visa-application-timeline",
     title: "Complete Austrian Student Visa Timeline: A Month-by-Month Breakdown",
     excerpt:

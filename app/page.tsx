@@ -1,10 +1,13 @@
-"use client"
+import { homeMetadata } from "@/lib/metadata"
+
+export const metadata = homeMetadata
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import SiteNav from "@/components/site-nav"
 import Image from "next/image"
+import Script from "next/script"
 import {
   ExternalLink,
   Home,
@@ -19,8 +22,68 @@ import {
 
 
 export default function HomePage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the minimum bank balance required for Austria student visa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For the residence permit application, students under 24 years need €703.58/month (€8,502.96 for 12 months), while students 24 years or older need €1,273.99/month (€15,287.88 for 12 months). This can be shown through a blocked bank account, scholarship letters, or declaration of liability from a sponsor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate total funds needed for Austria residence permit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Total funds = (Monthly amount × 12) + Health insurance + Additional rent (if rent exceeds €376.26/month). Example: Student under 24 with €450 rent and €780 insurance needs €10,107.84 total."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What documents do I need for Austria student visa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Required documents include: application form, valid passport, passport photo, police clearance certificate, health insurance (€30,000 coverage), university admission letter, proof of financial means (age-based), and proof of accommodation. All documents must be original or certified copies, translated to German if needed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which courier service to send documents from India to Austria?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Recommended courier services from India to Austria: DHL Express (3-5 days, most reliable), Indian Post Speed Post International (7-10 days, cost-effective), MS via DHL Germany partnership (good balance), and FedEx International (4-6 days). Always use tracked services and send well in advance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I work while studying in Austria?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, international students can work up to 20 hours per week during semester and full-time during breaks. Average pay is €12-€15 per hour. No separate work permit needed—your residence permit allows this."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does it cost to live in Austria as a student?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Monthly living costs range from €800-€1,200. Vienna: €900-€1,200, other cities: €800-€1,000. Includes rent (€350-€600), food (€200-€300), transport (€20 with student discount), health insurance (€65), and personal expenses."
+        }
+      }
+    ]
+  }
+
   return (
     <div className="min-h-screen bg-background">
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <SiteNav currentPage="home" />
 
       {/* Hero Section with Static Background */}
@@ -101,7 +164,7 @@ export default function HomePage() {
       </section>
 
       {/* Quick Links */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/50">
+      <section id="resources" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12">Essential Resources</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -216,10 +279,39 @@ export default function HomePage() {
                 What is the minimum bank balance required?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground leading-relaxed">
-                For the residence permit application, you need to show proof of funds covering at least €12,000 per year 
-                (approximately €1,000 per month) through a blocked bank account in Austria. This can be opened with banks like 
-                Erste Bank, Bank Austria, or specialized services like Expatrio. Some students also use scholarship letters 
-                or parental income proof as alternatives.
+                For the residence permit application, the required proof of funds depends on your age:
+                <ul className="list-disc pl-6 mt-2 space-y-2">
+                  <li><strong>Under 24 years:</strong> €703.58/month (€8,502.96 for 12 months)</li>
+                  <li><strong>24 years or older:</strong> €1,273.99/month (€15,287.88 for 12 months)</li>
+                </ul>
+                <p className="mt-3">
+                  This can be shown through a blocked bank account in Austria (available at Erste Bank, Bank Austria, or specialized 
+                  services like Expatrio), scholarship letters, or a declaration of liability from a sponsor.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2a" className="bg-card border border-border rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                How do I calculate the total funds needed for my residence permit?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                <div className="p-4 bg-muted/50 border border-border rounded-lg">
+                  <p className="font-semibold mb-3">Total Funds Calculation Formula:</p>
+                  <p className="text-sm mb-4">
+                    <strong>(Monthly amount × 12)</strong> + <strong>Health insurance</strong> + <strong>Additional rent</strong> (if your rent exceeds €376.26/month)
+                  </p>
+                  <div className="border-t border-border pt-3 mt-3">
+                    <p className="font-semibold text-sm mb-2">Example Calculation:</p>
+                    <p className="text-sm">
+                      Student under 24, rent €450/month, insurance €780/year:<br/>
+                      • Base amount: €703.58 × 12 = <strong>€8,442.96</strong><br/>
+                      • Insurance: <strong>€780</strong><br/>
+                      • Extra rent: (€450 - €376.26) × 12 = <strong>€884.88</strong><br/>
+                      • <strong>Total: €10,107.84</strong>
+                    </p>
+                  </div>
+                </div>
               </AccordionContent>
             </AccordionItem>
 
@@ -289,12 +381,44 @@ export default function HomePage() {
                 What documents do I need for the visa application?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground leading-relaxed">
-                Key documents include: (1) Valid passport (minimum 6 months validity), (2) University admission letter, 
-                (3) Completed residence permit application form, (4) Proof of financial means (blocked account with €12,000 or 
-                equivalent), (5) Health insurance coverage (minimum €30,000), (6) Proof of accommodation in Austria, 
-                (7) Birth certificate, (8) Academic transcripts and certificates, (9) Passport photos, (10) Police clearance 
-                certificate. All documents must be original or certified copies, and translated to German if not in English or German. 
-                Check our detailed visa guide for the complete checklist and step-by-step instructions.
+                <p className="mb-4"><strong>Required Documents for Residence Permit:</strong></p>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li><strong>Application Form:</strong> Fully completed residence permit application</li>
+                  <li><strong>Valid Passport:</strong> Original with minimum 6 months validity</li>
+                  <li><strong>Passport Photo:</strong> Recent biometric photo meeting Austrian specifications</li>
+                  <li><strong>Birth Certificate:</strong> (Optional but recommended)</li>
+                  <li><strong>Police Clearance Certificate (PCC):</strong> From your home country</li>
+                  <li><strong>Health Insurance:</strong> Coverage of at least €30,000</li>
+                  <li><strong>University Admission Letter:</strong> Official acceptance from Austrian institution</li>
+                  <li><strong>Proof of Financial Means:</strong>
+                    <ul className="list-circle pl-6 mt-2 space-y-1">
+                      <li>For students <strong>under 24 years:</strong> €703.58/month (€8,502.96 for 12 months)</li>
+                      <li>For students <strong>24 years or older:</strong> €1,273.99/month (€15,287.88 for 12 months)</li>
+                      <li>Via blocked account, sponsor's declaration of liability, or scholarship proof</li>
+                    </ul>
+                  </li>
+                  <li><strong>Declaration of Liability:</strong> (Optional - if someone else finances your stay)</li>
+                  <li><strong>Proof of Accommodation:</strong> Rental contract or dormitory confirmation</li>
+                </ul>
+                <p className="mt-4 text-sm">All documents must be original or certified copies, and translated to German if not in English or German. Check our detailed visa guide for step-by-step instructions.</p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-9" className="bg-card border border-border rounded-lg px-6">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                Which courier service should I use to send academic documents from India to Austrian universities?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                <p className="mb-3">For sending academic documents from India to Austria, you have several reliable options:</p>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li><strong>DHL Express:</strong> Most recommended for time-sensitive documents. Delivery in 3-5 business days with full tracking. Reliable customs clearance and widely accepted by Austrian universities.</li>
+                  <li><strong>Indian Post Speed Post International:</strong> Cost-effective option (cheaper than courier services) with 7-10 day delivery. Good tracking system and accepted by most universities. Best value for money.</li>
+                  <li><strong>MS in Germany (<a href="https://www.msingermany.co.in/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.msingermany.co.in</a>):</strong> Partners with DHL Germany for European deliveries, offering competitive rates with DHL's reliability. Good middle-ground option between cost and speed.</li>
+                  <li><strong>FedEx International:</strong> Another reliable courier service with 4-6 day delivery and comprehensive tracking.</li>
+                </ul>
+                <p className="mt-4 p-3 bg-muted/50 border border-border rounded text-sm">
+                  <strong>Pro Tip:</strong> Always use registered/tracked services, keep proof of postage, and send documents well in advance of deadlines (at least 3-4 weeks before). Consider scanning and emailing documents first while originals are in transit.
+                </p>
               </AccordionContent>
             </AccordionItem>
           </Accordion>

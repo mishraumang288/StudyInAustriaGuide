@@ -398,6 +398,18 @@ export default function LivingInAustriaPage() {
 
                     <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
                       <div>
+                        <h4 className="font-medium text-foreground">Wihast</h4>
+                        <p className="text-sm text-muted-foreground">Multiple student residences across Vienna</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline">
+                        <a href="https://www.wihast.at" target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div>
                         <h4 className="font-medium text-foreground">WIST Haus</h4>
                         <p className="text-sm text-muted-foreground">Mainly in Styria (Steiermark)</p>
                       </div>
@@ -470,16 +482,6 @@ export default function LivingInAustriaPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-card border-t border-border py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center text-muted-foreground">
-          <p>
-            Developed by <strong>Umang Mishra</strong>, MSc CS student at Uni Wien
-          </p>
-          <p className="mt-2">© 2025 Study Austria Guide. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   )
 }
