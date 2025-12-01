@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { WhatsAppFloat } from "@/components/whatsapp-float";
 import "./globals.css";
 
 // export const metadata: Metadata = {
@@ -94,6 +95,7 @@ html {
       <body className="flex flex-col min-h-screen">
         {children}
         <SiteFooter />
+        <WhatsAppFloat />
       </body>
     </html>
   );

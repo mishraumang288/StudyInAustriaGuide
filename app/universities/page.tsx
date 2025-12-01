@@ -1,5 +1,7 @@
 import SiteNav from "@/components/site-nav"
 import { FadeLink } from "@/components/fade-link"
+import { Breadcrumbs } from "@/components/breadcrumbs"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
 import { ArrowUpRight } from "lucide-react"
 import { universitiesMetadata } from "@/lib/metadata"
 

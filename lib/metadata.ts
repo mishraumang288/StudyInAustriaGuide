@@ -36,10 +36,10 @@ export function generateMetadata({ title, description, path, keywords = [] }: Pa
       type: "website",
       images: [
         {
-          url: `${baseUrl}/og-image.jpg`,
-          width: 1200,
-          height: 630,
-          alt: siteName,
+          url: `${baseUrl}/titleIcon.png`,
+          width: 512,
+          height: 512,
+          alt: `${siteName} - Complete guide for international students`,
         },
       ],
     },
@@ -47,7 +47,7 @@ export function generateMetadata({ title, description, path, keywords = [] }: Pa
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [`${baseUrl}/og-image.jpg`],
+      images: [`${baseUrl}/titleIcon.png`],
     },
     alternates: {
       canonical: url,

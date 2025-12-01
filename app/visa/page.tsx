@@ -1,6 +1,8 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import SiteNav from "@/components/site-nav"
+import { Breadcrumbs } from "@/components/breadcrumbs"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
 import { ExternalLink } from "lucide-react"
 import { visaMetadata } from "@/lib/metadata"
 
@@ -9,9 +11,13 @@ export const metadata = visaMetadata
 export default function VisaPage() {
   return (
     <div className="min-h-screen bg-background">
+      <BreadcrumbSchema items={[
+        { name: "Study Visa", url: "/visa" }
+      ]} />
       <SiteNav currentPage="visa" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <Breadcrumbs items={[{ label: "Study Visa" }]} />
         <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Austrian Study Visa & Residence Permit Guide</h1>
         <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
           Complete step-by-step breakdown for Indian students: from apostilling documents and securing university admission

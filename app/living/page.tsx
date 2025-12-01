@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import SiteNav from "@/components/site-nav"
+import { Breadcrumbs } from "@/components/breadcrumbs"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
 import { livingMetadata } from "@/lib/metadata"
 import {
   ExternalLink,
@@ -20,15 +22,21 @@ export const metadata = livingMetadata
 export default function LivingInAustriaPage() {
   return (
     <div className="min-h-screen bg-background">
+      <BreadcrumbSchema items={[
+        { name: "Living in Austria", url: "/living" }
+      ]} />
       <SiteNav currentPage="living" />
 
       {/* Hero Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-red-50 to-background dark:from-red-950/20">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto">
+          <Breadcrumbs items={[{ label: "Living in Austria" }]} />
+          <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Living in Austria</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             A Practical Guide for International Students: Cost, Lifestyle, Rules, and Tips
           </p>
+          </div>
         </div>
       </section>
 

@@ -1,4 +1,6 @@
 import SiteNav from "@/components/site-nav"
+import { Breadcrumbs } from "@/components/breadcrumbs"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
 import Link from "next/link"

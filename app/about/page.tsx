@@ -1,6 +1,8 @@
 import { Heart, Users, Target, GraduationCap } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import SiteNav from "@/components/site-nav"
+import { Breadcrumbs } from "@/components/breadcrumbs"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
 import { aboutMetadata } from "@/lib/metadata"
 
 export const metadata = aboutMetadata
@@ -8,9 +10,13 @@ export const metadata = aboutMetadata
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <BreadcrumbSchema items={[
+        { name: "About", url: "/about" }
+      ]} />
       <SiteNav currentPage="about" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1">
+        <Breadcrumbs items={[{ label: "About" }]} />
         <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">About Study Austria</h1>
         <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
           Your trusted companion for navigating the journey of studying in Austria as an Indian student.

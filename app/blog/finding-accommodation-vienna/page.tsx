@@ -1,4 +1,5 @@
 import SiteNav from "@/components/site-nav"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ArrowLeft, Calendar, Clock } from "lucide-react"
 import Link from "next/link"
 import { Metadata } from "next"
@@ -19,7 +20,11 @@ export default function FindingAccommodationViennaStub() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SiteNav />
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1">
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1">
+        <Breadcrumbs items={[
+          { label: "Blog", href: "/blog" },
+          { label: "Finding Accommodation in Vienna" }
+        ]} />
         <Link href="/blog" className="inline-flex items-center gap-2 text-muted-foreground hover:text-red-600 transition-colors mb-8">
           <ArrowLeft className="h-4 w-4" /> Back to Blog
         </Link>

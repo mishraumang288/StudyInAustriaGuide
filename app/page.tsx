@@ -92,13 +92,14 @@ export default function HomePage() {
         <div className="absolute inset-0 w-full h-full z-0">
           <Image
             src="/universities/tu_graz.jpg"
-            alt="TU Graz"
+            alt="Graz University of Technology (TU Graz) campus building - one of Austria's leading technical universities for international students"
             fill
             style={{ objectFit: "cover" }}
             priority
             quality={100}
             sizes="100vw"
             className="object-cover"
+            loading="eager"
           />
         </div>
         {/* Overlay for readability */}

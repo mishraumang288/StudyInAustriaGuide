@@ -1,4 +1,6 @@
 import SiteNav from "@/components/site-nav"
+import { Breadcrumbs } from "@/components/breadcrumbs"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
 import { Calendar, Clock, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { Metadata } from "next"
@@ -20,9 +22,17 @@ export const metadata: Metadata = {
 export default function FirstMonthBlogPost() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <BreadcrumbSchema items={[
+        { name: "Blog", url: "/blog" },
+        { name: "First Month in Vienna", url: "/blog/first-month-in-vienna" }
+      ]} />
       <SiteNav />
 
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1">
+        <Breadcrumbs items={[
+          { label: "Blog", href: "/blog" },
+          { label: "First Month in Vienna" }
+        ]} />
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-red-600 transition-colors mb-8"

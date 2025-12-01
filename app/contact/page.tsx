@@ -8,6 +8,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import SiteNav from "@/components/site-nav"
+import { Breadcrumbs } from "@/components/breadcrumbs"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
 import { useState } from "react"
 
 export default function ContactPage() {
@@ -60,9 +62,13 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <BreadcrumbSchema items={[
+        { name: "Contact", url: "/contact" }
+      ]} />
       <SiteNav currentPage="contact" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1">
+        <Breadcrumbs items={[{ label: "Contact" }]} />
         <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Get in Touch</h1>
         <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
           Have questions about studying in Austria? We're here to help! Connect with us through any of these channels.
